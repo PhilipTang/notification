@@ -12,7 +12,7 @@ import (
 
 func TestPushMessage(t *testing.T) {
 	meta := &MessageMeta{
-		Url:         "http://123.57.137.41:90/printall",
+		Url:         "http://localhost:8000/printall",
 		Headers:     `{"myheaderkey": "myheadervalue"}`,
 		Attempts:    0,
 		MaxAttempts: 10,
