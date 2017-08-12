@@ -21,8 +21,8 @@ go build -ldflags "-w -s" -o bin/listener-retry ./retry/retry.go
 
 ### 1. 手动运行服务
 
-- 实时处理 `./bin/listener -brokers kafka:9092 -topic mytopic -verbose -offset newest --stderrthreshold INFO`
-- 重试处理 `./bin/listener-retry -brokers kafka:9092 -topic mytopic -verbose --stderrthreshold INFO -v 20`
+- 实时处理 `./bin/listener -brokers localhost:9092 -topic mytopic -verbose -offset newest --stderrthreshold INFO`
+- 重试处理 `./bin/listener-retry -brokers localhost:9092 -topic mytopic -verbose --stderrthreshold INFO -v 20`
 
 ### 2. 使用 Supervisor
 
