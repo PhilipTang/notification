@@ -8,6 +8,7 @@ dep:env
 	go get github.com/golang/glog
 	go get github.com/go-redis/redis
 	go get github.com/go-yaml/yaml
+	go get github.com/stretchr/testify/assert
 
 build: dep fmt
 	go build -ldflags "-w -s" -o bin/listener ./main/listener.go
