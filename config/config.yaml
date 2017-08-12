@@ -1,0 +1,7 @@
+redis:
+  server: 127.0.0.1:6379
+  password:
+  db: 0
+  maxidle: 20
+  maxactive: 0 # Maximum number of connections allocated by the pool at a given time When zero, there is no limit on the number of connections in the pool.
+  protocol: tcp
