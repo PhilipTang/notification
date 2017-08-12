@@ -46,7 +46,7 @@ func TestPushMessage(t *testing.T) {
 
 func TestPushWithdrawSucc(t *testing.T) {
 	meta := &MessageMeta{
-		Url:     "http://api.jiesuan.local:8083/api/payment/v1/test-notification",
+		Url:     "http://localhost:8000/api/payment/v1/test-notification",
 		Headers: `{"Content-Type":"application/x-www-form-urlencoded", "dealer-id":"push_test_dealer_id", "request-id":"148707994807304192"}`,
 	}
 
@@ -68,7 +68,7 @@ func TestPushWithdrawSucc(t *testing.T) {
 	}
 
 	accessLogProducer.Input() <- &sarama.ProducerMessage{
-		Topic: "geass-callback",
+		Topic: "mytopic",
 		Value: data,
 	}
 	defer accessLogProducer.Close()
@@ -149,12 +149,12 @@ func TestDebugMissing(t *testing.T) {
 	for i := 1; i <= 1024; i++ {
 		if i%2 == 0 {
 			accessLogProducer.Input() <- &sarama.ProducerMessage{
-				Topic: "geass-callback",
+				Topic: "mytopic",
 				Value: data1,
 			}
 		} else {
 			accessLogProducer.Input() <- &sarama.ProducerMessage{
-				Topic: "geass-callback",
+				Topic: "mytopic",
 				Value: data,
 			}
 		}
