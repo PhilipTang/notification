@@ -112,7 +112,7 @@ func main() {
 
 	go func() {
 		for message := range messages {
-			notification.Fire(redisClient, message, "", notification.MessageRetry{})
+			go notification.Fire(redisClient, message, "", notification.MessageRetry{})
 		}
 	}()
 
