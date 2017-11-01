@@ -1,6 +1,7 @@
 package notification
 
 import (
+	"crypto/tls"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -202,7 +203,17 @@ func post(jsonData string, url string, header string) (result string, err error)
 		req.Header.Add(k, v)
 	}
 
-	res, err := http.DefaultClient.Do(req)
+	var tr *http.Transport
+	if strings.Contains(url, "jiesuan.local") {
+		tr = &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}}
+	} else {
+		tr = &http.Transport{}
+	}
+	client := http.Client{
+		Transport: tr,
+		Timeout:   30 * time.Second,
+	}
+	res, err := client.Do(req)
 	if err != nil {
 		glog.Errorf("@%s, http.DefaultClient.Do(req), err=%s, req=%+v", fn, err, req)
 		return "", err
